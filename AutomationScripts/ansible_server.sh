@@ -8,12 +8,12 @@ yum install git python python-devel python-pip openssl ansible -y
 sed -i 's@#inventory      = /etc/ansible/hosts@inventory      = /etc/ansible/hosts@g' /etc/ansible/ansible.cfg
 sed -i 's@#sudo_user      = root@sudo_user      = root@g' /etc/ansible/ansible.cfg
 echo "[devops1]" >> /etc/ansible/hosts
-echo "172.31.34.79" >> /etc/ansible/hosts
-#echo "[devops2]" >> /etc/ansible/hosts
-#echo "172.31.15.96" >> /etc/ansible/hosts
-#echo "[devops]" >> /etc/ansible/hosts
-#echo "172.31.34.79" >> /etc/ansible/hosts
-#echo "172.31.15.96" >> /etc/ansible/hosts
+echo "172.31.39.114" >> /etc/ansible/hosts
+echo "[devops2]" >> /etc/ansible/hosts
+echo "172.31.47.182" >> /etc/ansible/hosts
+echo "[devops]" >> /etc/ansible/hosts
+echo "172.31.39.114" >> /etc/ansible/hosts
+echo "172.31.47.182" >> /etc/ansible/hosts
 echo "[local]" >> /etc/ansible/hosts
 echo "localhost" >> /etc/ansible/hosts
 adduser ansible
@@ -27,5 +27,8 @@ su - ansible
 yum update -y
 ssh-keygen -f /home/ansible/.ssh/id_rsa -N ''
 cd .ssh
-echo "anisble1234" | ssh-copy-id --stdin ansible@172.31.34.79
+echo "yes" | ssh-copy-id ansible@172.31.39.114
+sshpass -p "anisble1234" ssh-copy-id ansible@172.31.39.114
+echo "yes" | ssh-copy-id ansible@172.31.47.182
+sshpass -p "anisble1234" ssh-copy-id ansible@172.31.47.182
 
